@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Diffster;
 
-public class DefaultDiffFormatter : IDiffFormatter
+public class DefaultDiffFormatter : IDiffFormatter<string>
 {
-    public string Format(PropertyDifference difference)
+    public string Format(List<PropertyDifference> differences)
     {
-        return $"{difference.PropertyName}: '{difference.FirstValue}' vs '{difference.SecondValue}'";
+        return string.Join("\n", differences.Select(d => $"{d.PropertyName}: '{d.FirstValue}' vs '{d.SecondValue}'"));
     }
 }

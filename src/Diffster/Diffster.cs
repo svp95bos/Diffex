@@ -12,28 +12,22 @@ using System.Reflection;
 
 namespace Diffster;
 
-public class PropertyDifference
+public class Diffster<T, TOutput>
 {
-    public string PropertyName { get; set; }
-    public object FirstValue { get; set; }
-    public object SecondValue { get; set; }
+    private readonly IDiffFormatter<TOutput> _formatter;
 
-    public override string ToString()
+    public Diffster(IDiffFormatter<TOutput> formatter = null)
     {
-        return $"{PropertyName}: '{FirstValue}' vs '{SecondValue}'";
-    }
-}
-
-public class Diffster<T>
-{
-    private readonly IDiffFormatter _formatter;
-
-    public Diffster(IDiffFormatter formatter = null)
-    {
-        _formatter = formatter ?? new DefaultDiffFormatter();
+        _formatter = formatter ?? (IDiffFormatter<TOutput>)new DefaultDiffFormatter();
     }
 
-    public List<string> Diff(T first, T second, string parentPath = "")
+    public TOutput Diff(T first, T second)
+    {
+        var differences = GetDifferences(first, second);
+        return _formatter.Format(differences);
+    }
+
+    public List<PropertyDifference> GetDifferences(T first, T second, string parentPath = "")
     {
         if (first == null || second == null)
         {
@@ -43,19 +37,13 @@ public class Diffster<T>
         List<PropertyDifference> differences = new List<PropertyDifference>();
         Type type = typeof(T);
 
-        if (type.IsEnum)
+        if (type.IsPrimitive || type.IsValueType || type == typeof(string))
         {
-            // Compare enums using their names instead of raw values
             if (!Equals(first, second))
             {
-                differences.Add(new PropertyDifference
-                {
-                    PropertyName = parentPath,
-                    FirstValue = Enum.GetName(type, first),
-                    SecondValue = Enum.GetName(type, second)
-                });
+                differences.Add(new PropertyDifference { PropertyName = parentPath, FirstValue = first, SecondValue = second });
             }
-            return differences.Select(d => _formatter.Format(d)).ToList();
+            return differences;
         }
 
         PropertyInfo[] properties = type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
@@ -93,10 +81,8 @@ public class Diffster<T>
                 }
                 else
                 {
-                    var nestedDiffer = Activator.CreateInstance(typeof(Diffster<>).MakeGenericType(property.PropertyType), _formatter);
-                    var diffMethod = nestedDiffer.GetType().GetMethod("Diff");
-                    var nestedDifferences = (List<PropertyDifference>)diffMethod.Invoke(nestedDiffer, new object[] { firstValue, secondValue, propertyPath });
-
+                    var nestedDiffer = new Diffster<object, List<PropertyDifference>>();
+                    var nestedDifferences = nestedDiffer.GetDifferences(firstValue, secondValue, propertyPath);
                     differences.AddRange(nestedDifferences);
                 }
             }
@@ -105,8 +91,8 @@ public class Diffster<T>
                 differences.Add(new PropertyDifference { PropertyName = propertyPath, FirstValue = firstValue, SecondValue = secondValue });
             }
         }
-        return differences.Select(d => _formatter.Format(d)).ToList();
-        //return differences;
+
+        return differences;
     }
 
     private List<PropertyDifference> CompareCollections(IEnumerable first, IEnumerable second, string propertyPath)
@@ -139,24 +125,10 @@ public class Diffster<T>
             {
                 differences.Add(new PropertyDifference { PropertyName = indexedPath, FirstValue = firstList[i], SecondValue = null });
             }
-            else if (IsEnum(firstList[i].GetType()))
-            {
-                if (!Equals(firstList[i], secondList[i]))
-                {
-                    differences.Add(new PropertyDifference
-                    {
-                        PropertyName = indexedPath,
-                        FirstValue = Enum.GetName(firstList[i].GetType(), firstList[i]),
-                        SecondValue = Enum.GetName(firstList[i].GetType(), secondList[i])
-                    });
-                }
-            }
             else if (IsComplexType(firstList[i].GetType()) || IsStruct(firstList[i].GetType()))
             {
-                var nestedDiffer = Activator.CreateInstance(typeof(Diffster<>).MakeGenericType(firstList[i].GetType()), _formatter);
-                var diffMethod = nestedDiffer.GetType().GetMethod("Diff");
-                var nestedDifferences = (List<PropertyDifference>)diffMethod.Invoke(nestedDiffer, new object[] { firstList[i], secondList[i], indexedPath });
-
+                var nestedDiffer = new Diffster<object, List<PropertyDifference>>();
+                var nestedDifferences = nestedDiffer.GetDifferences(firstList[i], secondList[i], indexedPath);
                 differences.AddRange(nestedDifferences);
             }
             else if (!Equals(firstList[i], secondList[i]))

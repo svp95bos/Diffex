@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Diffster;
 
-public interface IDiffFormatter
+public interface IDiffFormatter<TOutput>
 {
-    string Format(PropertyDifference difference);
+    TOutput Format(List<PropertyDifference> differences);
 }

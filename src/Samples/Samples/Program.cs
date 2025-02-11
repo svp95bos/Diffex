@@ -8,6 +8,6 @@ var instance2 = new SampleClass1();
 instance1.NumberA = 1;
 instance2.NumberA = 2;
 
-var differences = instance1.Diff(instance2);
+var differences = instance1.Diff(instance2, new JsonDiffFormatter());
 Console.WriteLine(string.Join(", ", differences));
 Console.ReadLine();

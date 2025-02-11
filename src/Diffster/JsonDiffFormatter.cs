@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Diffster;
 
-public class JsonDiffFormatter : IDiffFormatter
+public class JsonDiffFormatter : IDiffFormatter<List<DateTime>>
 {
-    public string Format(PropertyDifference difference)
+    public List<DateTime> Format(List<PropertyDifference> differences)
     {
-        return $"{{ \"property\": \"{difference.PropertyName}\", \"old\": \"{difference.FirstValue}\", \"new\": \"{difference.SecondValue}\" }}";
+        throw new NotImplementedException();
     }
 }

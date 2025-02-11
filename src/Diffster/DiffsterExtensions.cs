@@ -8,9 +8,9 @@ namespace Diffster
 {
     public static class DifferExtensions
     {
-        public static List<PropertyDifference> Diff<T>(this T first, T second)
+        public static List<string> Diff<T>(this T first, T second, IDiffFormatter formatter = null)
         {
-            return new Diffster<T>().Diff(first, second);
+            return new Diffster<T>(formatter).Diff(first, second);
         }
     }
 }

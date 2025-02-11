@@ -33,7 +33,7 @@ public class Diffster<T>
         _formatter = formatter ?? new DefaultDiffFormatter();
     }
 
-    public List<PropertyDifference> Diff(T first, T second, string parentPath = "")
+    public List<string> Diff(T first, T second, string parentPath = "")
     {
         if (first == null || second == null)
         {
@@ -55,7 +55,7 @@ public class Diffster<T>
                     SecondValue = Enum.GetName(type, second)
                 });
             }
-            return differences;
+            return differences.Select(d => _formatter.Format(d)).ToList();
         }
 
         PropertyInfo[] properties = type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
@@ -105,8 +105,8 @@ public class Diffster<T>
                 differences.Add(new PropertyDifference { PropertyName = propertyPath, FirstValue = firstValue, SecondValue = secondValue });
             }
         }
-
-        return differences;
+        return differences.Select(d => _formatter.Format(d)).ToList();
+        //return differences;
     }
 
     private List<PropertyDifference> CompareCollections(IEnumerable first, IEnumerable second, string propertyPath)

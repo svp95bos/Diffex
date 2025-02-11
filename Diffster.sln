@@ -1,0 +1,30 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35731.43
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diffster", "src\Diffster\Diffster.csproj", "{2B3BB4FF-C244-091A-B64E-DF60666417EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples", "src\Samples\Samples\Samples.csproj", "{A5C2D2AE-885B-4F53-9935-3F5A0377B17B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2B3BB4FF-C244-091A-B64E-DF60666417EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B3BB4FF-C244-091A-B64E-DF60666417EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B3BB4FF-C244-091A-B64E-DF60666417EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B3BB4FF-C244-091A-B64E-DF60666417EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5C2D2AE-885B-4F53-9935-3F5A0377B17B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5C2D2AE-885B-4F53-9935-3F5A0377B17B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5C2D2AE-885B-4F53-9935-3F5A0377B17B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5C2D2AE-885B-4F53-9935-3F5A0377B17B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D54B6F98-E92F-474C-B4EB-22211C5848F4}
+	EndGlobalSection
+EndGlobal

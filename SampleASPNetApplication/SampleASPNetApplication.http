@@ -1,0 +1,6 @@
+@SampleASPNetApplication_HostAddress = http://localhost:5216
+
+GET {{SampleASPNetApplication_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

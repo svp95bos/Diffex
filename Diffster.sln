@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diffster", "src\Diffster\Di
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples", "src\Samples\Samples\Samples.csproj", "{A5C2D2AE-885B-4F53-9935-3F5A0377B17B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleASPNetApplication", "SampleASPNetApplication\SampleASPNetApplication.csproj", "{1A9F78FD-3173-40F6-A590-281F239BCAC6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +22,10 @@ Global
 		{A5C2D2AE-885B-4F53-9935-3F5A0377B17B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5C2D2AE-885B-4F53-9935-3F5A0377B17B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5C2D2AE-885B-4F53-9935-3F5A0377B17B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A9F78FD-3173-40F6-A590-281F239BCAC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A9F78FD-3173-40F6-A590-281F239BCAC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A9F78FD-3173-40F6-A590-281F239BCAC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A9F78FD-3173-40F6-A590-281F239BCAC6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

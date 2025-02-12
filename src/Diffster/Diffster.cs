@@ -1,10 +1,4 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +13,12 @@ public class Diffster<T, TOutput>
     public Diffster(IDiffFormatter<TOutput> formatter = null)
     {
         _formatter = formatter ?? (IDiffFormatter<TOutput>)new DefaultDiffFormatter();
+    }
+
+    public Diffster(IDiffFormatter<TOutput> formatter, Action<IDiffFormatter<TOutput>> configureFormatter)
+    {
+        _formatter = formatter ?? throw new ArgumentNullException(nameof(formatter));
+        configureFormatter?.Invoke(_formatter);
     }
 
     public TOutput Diff(T first, T second)
@@ -81,8 +81,8 @@ public class Diffster<T, TOutput>
                 }
                 else
                 {
-                    var nestedDiffer = new Diffster<object, List<PropertyDifference>>();
-                    var nestedDifferences = nestedDiffer.GetDifferences(firstValue, secondValue, propertyPath);
+                    var nestedDiffer = new Diffster<T, TOutput>(_formatter);
+                    var nestedDifferences = nestedDiffer.GetDifferences((T)firstValue, (T)secondValue, propertyPath);
                     differences.AddRange(nestedDifferences);
                 }
             }
@@ -127,8 +127,8 @@ public class Diffster<T, TOutput>
             }
             else if (IsComplexType(firstList[i].GetType()) || IsStruct(firstList[i].GetType()))
             {
-                var nestedDiffer = new Diffster<object, List<PropertyDifference>>();
-                var nestedDifferences = nestedDiffer.GetDifferences(firstList[i], secondList[i], indexedPath);
+                var nestedDiffer = new Diffster<T, TOutput>(_formatter);
+                var nestedDifferences = nestedDiffer.GetDifferences((T)firstList[i], (T)secondList[i], indexedPath);
                 differences.AddRange(nestedDifferences);
             }
             else if (!Equals(firstList[i], secondList[i]))
@@ -148,5 +148,3 @@ public class Diffster<T, TOutput>
 
     private bool IsCollection(Type type) => typeof(IEnumerable).IsAssignableFrom(type) && type != typeof(string);
 }
-
-

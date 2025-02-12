@@ -3,7 +3,7 @@ using Xunit;
 
 namespace Diffster.Tests;
 
-public class UnitTest1
+public class SimpleTests
 {
     [Fact]
     public void Test_PrimitiveTypes()
@@ -93,6 +93,24 @@ public class UnitTest1
         List<int> second = new List<int> { 1, 2, 3 };
         var result = first.Diff(second);
         Assert.Contains("", result);
+    }
+
+    [Fact]
+    public void Test_CollectionsJaggedDiff()
+    {
+        List<int> first = new List<int> { 1, 2, 3 };
+        List<int> second = new List<int> { 1, 2 };
+        var result = first.Diff(second);
+        Assert.Contains("Count;3;2\r\n[2];3;", result);
+    }
+
+    [Fact]
+    public void Test_CollectionsInvertedJaggedDiff()
+    {
+        List<int> first = new List<int> { 1, 2 };
+        List<int> second = new List<int> { 1, 2, 3 };
+        var result = first.Diff(second);
+        Assert.Contains("Count;2;3\r\n[2];;3", result);
     }
 
     [Fact]

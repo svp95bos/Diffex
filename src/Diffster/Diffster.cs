@@ -8,23 +8,22 @@ namespace Diffster;
 
 public class Diffster<T, TOutput>
 {
-    private readonly IDiffFormatter<TOutput> _formatter;
+    private readonly Func<List<PropertyDifference>, TOutput> _formatter;
 
-    public Diffster(IDiffFormatter<TOutput> formatter = null)
+    public Diffster()
     {
-        _formatter = formatter ?? (IDiffFormatter<TOutput>)new DefaultDiffFormatter();
+        _formatter = differences => (TOutput)(object)string.Join(Environment.NewLine, differences.Select(d => d.ToString()));
     }
 
-    public Diffster(IDiffFormatter<TOutput> formatter, Action<IDiffFormatter<TOutput>> configureFormatter)
+    public Diffster(Func<List<PropertyDifference>, TOutput> formatter)
     {
         _formatter = formatter ?? throw new ArgumentNullException(nameof(formatter));
-        configureFormatter?.Invoke(_formatter);
     }
 
     public TOutput Diff(T first, T second)
     {
         var differences = GetDifferences(first, second);
-        return _formatter.Format(differences);
+        return _formatter(differences);
     }
 
     public List<PropertyDifference> GetDifferences(T first, T second, string parentPath = "")

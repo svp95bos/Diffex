@@ -18,12 +18,17 @@ public class Diffster<T, TOutput>
 
     public List<PropertyDifference> GetDifferences(T first, T second, string parentPath = "")
     {
-        if (first == null || second == null)
+        if (first == null)
         {
-            throw new ArgumentNullException("Both instances must be non-null.");
+            throw new ArgumentNullException(nameof(first), "The first instance must be non-null.");
         }
 
-        List<PropertyDifference> differences = new List<PropertyDifference>();
+        if (second == null)
+        {
+            throw new ArgumentNullException(nameof(second), "The second instance must be non-null.");
+        }
+
+        List<PropertyDifference> differences = [];
         Type type = typeof(T);
 
         if (type.IsPrimitive || type.IsValueType || type == typeof(string))

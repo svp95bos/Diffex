@@ -8,7 +8,8 @@ public class PropertyDifference
 
     public override string ToString()
     {
-        return $"{PropertyName}: '{FirstValue}' vs '{SecondValue}'";
+        var propName = string.IsNullOrEmpty(PropertyName) ? "null" : $"{PropertyName}";
+        return $"{propName};{FirstValue};{SecondValue}";
     }
 }
 

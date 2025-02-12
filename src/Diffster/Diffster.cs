@@ -10,21 +10,11 @@ public class Diffster<T, TOutput>
 {
     private readonly Func<List<PropertyDifference>, TOutput> _formatter;
 
-    public Diffster()
-    {
-        _formatter = differences => (TOutput)(object)string.Join(Environment.NewLine, differences.Select(d => d.ToString()));
-    }
+    public Diffster() => _formatter = differences => (TOutput)(object)string.Join(Environment.NewLine, differences.Select(d => d.ToString()));
 
-    public Diffster(Func<List<PropertyDifference>, TOutput> formatter)
-    {
-        _formatter = formatter ?? throw new ArgumentNullException(nameof(formatter));
-    }
+    public Diffster(Func<List<PropertyDifference>, TOutput> formatter) => _formatter = formatter ?? throw new ArgumentNullException(nameof(formatter));
 
-    public TOutput Diff(T first, T second)
-    {
-        var differences = GetDifferences(first, second);
-        return _formatter(differences);
-    }
+    public TOutput Diff(T first, T second) => _formatter(GetDifferences(first, second));
 
     public List<PropertyDifference> GetDifferences(T first, T second, string parentPath = "")
     {
@@ -139,11 +129,11 @@ public class Diffster<T, TOutput>
         return differences;
     }
 
-    private bool IsEnum(Type type) => type.IsEnum;
+    private static bool IsEnum(Type type) => type.IsEnum;
 
-    private bool IsStruct(Type type) => type.IsValueType && !type.IsPrimitive && !type.IsEnum && type != typeof(decimal);
+    private static bool IsStruct(Type type) => type.IsValueType && !type.IsPrimitive && !type.IsEnum && type != typeof(decimal);
 
-    private bool IsComplexType(Type type) => type.IsClass && type != typeof(string) && !typeof(IEnumerable).IsAssignableFrom(type);
+    private static bool IsComplexType(Type type) => type.IsClass && type != typeof(string) && !typeof(IEnumerable).IsAssignableFrom(type);
 
-    private bool IsCollection(Type type) => typeof(IEnumerable).IsAssignableFrom(type) && type != typeof(string);
+    private static bool IsCollection(Type type) => typeof(IEnumerable).IsAssignableFrom(type) && type != typeof(string);
 }

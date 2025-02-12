@@ -10,10 +10,15 @@ var instance2 = new SampleClass1();
 instance1.NumberA = 1;
 instance2.NumberA = 2;
 
+var defaultDiff = instance1.Diff(instance2);
+Console.WriteLine("Default");
+Console.WriteLine(defaultDiff);
+
 // First usage sample
 var differences = instance1.Diff(instance2, differences =>
     JsonSerializer.Serialize(differences)
 );
+Console.WriteLine("Differences");
 Console.WriteLine(differences);
 
 // Second usage sample
@@ -23,6 +28,7 @@ Func<List<PropertyDifference>, string> customFormatter = differences =>
 };
 
 var customFormattedDifferences = instance1.Diff(instance2, customFormatter);
+Console.WriteLine("Custom");
 Console.WriteLine(customFormattedDifferences);
 
 // Third usage sample
@@ -37,6 +43,20 @@ Func<List<PropertyDifference>, string> jsonFormatterWithTotal = differences =>
 };
 
 var jsonFormattedDifferencesWithTotal = instance1.Diff(instance2, jsonFormatterWithTotal);
+Console.WriteLine("Json with total");
 Console.WriteLine(jsonFormattedDifferencesWithTotal);
+
+// Fourth usage sample
+Func<List<PropertyDifference>, List<(string PropertyName, object FirstValue, object SecondValue)>> tupleFormatter = differences =>
+{
+    return differences.Select(d => (d.PropertyName, d.FirstValue, d.SecondValue)).ToList();
+};
+
+var tupleFormattedDifferences = instance1.Diff(instance2, tupleFormatter);
+Console.WriteLine("Tuples");
+foreach (var diff in tupleFormattedDifferences)
+{
+    Console.WriteLine($"Property: {diff.PropertyName}, FirstValue: {diff.FirstValue}, SecondValue: {diff.SecondValue}");
+}
 
 Console.ReadLine();

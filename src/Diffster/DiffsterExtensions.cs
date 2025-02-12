@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 
 namespace Diffster;
 
@@ -12,8 +6,8 @@ public static class DifferExtensions
 {
     public static TOutput Diff<T, TOutput>(this T first, T second, Func<List<PropertyDifference>, TOutput> formatter = null)
     {
-        return formatter == null 
-            ? new Diffster<T, TOutput>().Diff(first, second) 
+        return formatter == null
+            ? new Diffster<T, TOutput>().Diff(first, second)
             : new Diffster<T, TOutput>(formatter).Diff(first, second);
     }
 

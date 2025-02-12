@@ -1,8 +1,10 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-using Samples;
-using Diffster;
 using System.Text.Json;
+
+using Diffster;
+
+using Samples;
 
 var instance1 = new SampleClass1();
 var instance2 = new SampleClass1();

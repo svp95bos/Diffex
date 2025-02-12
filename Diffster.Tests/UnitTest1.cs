@@ -69,12 +69,30 @@ public class UnitTest1
     }
 
     [Fact]
-    public void Test_Collections()
+    public void Test_CollectionsSingleItemDiff()
     {
         List<int> first = new List<int> { 1, 2, 3 };
         List<int> second = new List<int> { 1, 2, 4 };
         var result = first.Diff(second);
         Assert.Contains("[2];3;4", result);
+    }
+
+    [Fact]
+    public void Test_CollectionsTwoItemDiff()
+    {
+        List<int> first = new List<int> { 1, 2, 3 };
+        List<int> second = new List<int> { 0, 2, 4 };
+        var result = first.Diff(second);
+        Assert.Contains("[0];1;0\r\n[2];3;4", result);
+    }
+
+    [Fact]
+    public void Test_CollectionsNoDiff()
+    {
+        List<int> first = new List<int> { 1, 2, 3 };
+        List<int> second = new List<int> { 1, 2, 3 };
+        var result = first.Diff(second);
+        Assert.Contains("", result);
     }
 
     [Fact]

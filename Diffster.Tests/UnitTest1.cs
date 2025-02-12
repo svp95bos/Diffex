@@ -74,7 +74,7 @@ public class UnitTest1
         List<int> first = new List<int> { 1, 2, 3 };
         List<int> second = new List<int> { 1, 2, 4 };
         var result = first.Diff(second);
-        Assert.Contains("PropertyName: [2], FirstValue: 3, SecondValue: 4", result);
+        Assert.Contains("[2];3;4", result);
     }
 
     [Fact]

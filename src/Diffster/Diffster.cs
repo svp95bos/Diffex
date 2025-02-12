@@ -25,7 +25,7 @@ public class Diffster<T, TOutput>
             throw new ArgumentNullException(nameof(second), "The second instance must be non-null.");
         }
 
-        List<PropertyDifference> differences = [];
+        List<PropertyDifference> differences = new();
         Type type = typeof(T);
 
         if (type.IsPrimitive || type.IsValueType || type == typeof(string))
@@ -41,6 +41,16 @@ public class Diffster<T, TOutput>
 
         foreach (var property in properties)
         {
+            // Handle indexed properties (e.g., collections)
+            if (property.GetIndexParameters().Length > 0)
+            {
+                if (IsCollection(property.DeclaringType))
+                {
+                    differences.AddRange(CompareCollections(first as IEnumerable, second as IEnumerable, parentPath));
+                }
+                continue;
+            }
+
             object firstValue = property.GetValue(first);
             object secondValue = property.GetValue(second);
             string propertyPath = string.IsNullOrEmpty(parentPath) ? property.Name : $"{parentPath}.{property.Name}";
@@ -72,8 +82,7 @@ public class Diffster<T, TOutput>
                 }
                 else
                 {
-                    var nestedDiffer = new Diffster<T, TOutput>(_formatter);
-                    var nestedDifferences = nestedDiffer.GetDifferences((T)firstValue, (T)secondValue, propertyPath);
+                    var nestedDifferences = GetDifferences((T)firstValue, (T)secondValue, propertyPath);
                     differences.AddRange(nestedDifferences);
                 }
             }
@@ -118,8 +127,7 @@ public class Diffster<T, TOutput>
             }
             else if (IsComplexType(firstList[i].GetType()) || IsStruct(firstList[i].GetType()))
             {
-                var nestedDiffer = new Diffster<T, TOutput>(_formatter);
-                var nestedDifferences = nestedDiffer.GetDifferences((T)firstList[i], (T)secondList[i], indexedPath);
+                var nestedDifferences = GetDifferences((T)firstList[i], (T)secondList[i], indexedPath);
                 differences.AddRange(nestedDifferences);
             }
             else if (!Equals(firstList[i], secondList[i]))

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using Microsoft.Extensions.DependencyInjection;
+
 namespace Diffster;
 
 public static class DifferExtensions
@@ -21,4 +23,13 @@ public static class DifferExtensions
     {
         return new Diffster<T, string>().Diff(first, second);
     }
+
+    public static IServiceCollection AddDiffster<T, TOutput>(this IServiceCollection services, Func<List<PropertyDifference>, TOutput> formatter)
+    {
+        ArgumentNullException.ThrowIfNull(formatter);
+
+        services.AddSingleton<Diffster<T, TOutput>>(provider => new Diffster<T, TOutput>(formatter));
+        return services;
+    }
 }
+

@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\Diffster\Diffex.csproj" />
+    <ProjectReference Include="..\Diffex\Diffex.csproj" />
   </ItemGroup>
 
   <ItemGroup>

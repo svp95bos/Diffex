@@ -6,6 +6,7 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>Diffex diff helper</Title>
     <PackageTags>diff;compare</PackageTags>
+    <Description>A library for getting the differences between to instances.</Description>
   </PropertyGroup>
 
   <ItemGroup>

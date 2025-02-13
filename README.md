@@ -1,6 +1,6 @@
-﻿# Diffster
+﻿# Diffex
 
-Diffster is a .NET library designed to compare two objects of the same type and return the differences in a specified format. It is highly customizable and can be integrated into various .NET applications.
+Diffex is a .NET library designed to compare two objects of the same type and return the differences in a specified format. It is highly customizable and can be integrated into various .NET applications.
 
 ## Features
 
@@ -11,7 +11,7 @@ Diffster is a .NET library designed to compare two objects of the same type and 
 
 ## Usage
 
-Here are some examples of how to use Diffster:
+Here are some examples of how to use Diffex:
 ```csharp
 
 var instance1 = new SampleClass1();

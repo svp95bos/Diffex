@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Diffster\Diffex.csproj" />
+    <ProjectReference Include="..\..\Diffex\Diffex.csproj" />
   </ItemGroup>
 
 </Project>

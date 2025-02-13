@@ -1,4 +1,4 @@
-﻿namespace Diffster;
+﻿namespace Diffex;
 
 /// <summary>
 /// Represents a difference between two properties.

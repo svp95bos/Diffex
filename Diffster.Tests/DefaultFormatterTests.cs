@@ -1,9 +1,6 @@
-﻿using System.Collections.Generic;
-using Xunit;
+﻿namespace Diffex.Tests;
 
-namespace Diffster.Tests;
-
-public class SimpleTests
+public class DefaultFormatterTests
 {
     [Fact]
     public void Test_PrimitiveTypes()

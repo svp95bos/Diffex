@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace Diffster;
+namespace Diffex;
 
 /// <summary>
 /// Provides extension methods for performing and configuring differences between objects.
@@ -19,8 +19,8 @@ public static class DifferExtensions
     public static TOutput Diff<T, TOutput>(this T first, T second, Func<List<PropertyDifference>, TOutput> formatter = null)
     {
         return formatter == null
-            ? new Diffster<T, TOutput>().Diff(first, second)
-            : new Diffster<T, TOutput>(formatter).Diff(first, second);
+            ? new Diffex<T, TOutput>().Diff(first, second)
+            : new Diffex<T, TOutput>(formatter).Diff(first, second);
     }
 
     /// <summary>
@@ -30,7 +30,7 @@ public static class DifferExtensions
     /// <param name="first">The first object to compare.</param>
     /// <param name="second">The second object to compare.</param>
     /// <returns>A string representation of the differences between the two objects.</returns>
-    public static string Diff<T>(this T first, T second) => new Diffster<T, string>().Diff(first, second);
+    public static string Diff<T>(this T first, T second) => new Diffex<T, string>().Diff(first, second);
 
     /// <summary>
     /// Adds a Diffster service to the specified IServiceCollection.
@@ -45,7 +45,7 @@ public static class DifferExtensions
     {
         ArgumentNullException.ThrowIfNull(formatter);
 
-        services.AddSingleton<Diffster<T, TOutput>>(provider => new Diffster<T, TOutput>(formatter));
+        services.AddSingleton(provider => new Diffex<T, TOutput>(formatter));
         return services;
     }
 }

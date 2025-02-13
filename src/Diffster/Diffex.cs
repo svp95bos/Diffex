@@ -1,28 +1,28 @@
 ﻿using System.Collections;
 using System.Reflection;
 
-namespace Diffster;
+namespace Diffex;
 
 /// <summary>
 /// A class that provides functionality to compare two objects of type T and return the differences in a specified format.
 /// </summary>
 /// <typeparam name="T">The type of objects to compare.</typeparam>
 /// <typeparam name="TOutput">The type of the output format.</typeparam>
-public class Diffster<T, TOutput>
+public class Diffex<T, TOutput>
 {
     private readonly Func<List<PropertyDifference>, TOutput> _formatter;
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="Diffster{T, TOutput}"/> class with a default formatter.
+    /// Initializes a new instance of the <see cref="Diffex{T, TOutput}"/> class with a default formatter.
     /// </summary>
-    public Diffster() => _formatter = differences => (TOutput)(object)string.Join(Environment.NewLine, differences.Select(d => d.ToString()));
+    public Diffex() => _formatter = differences => (TOutput)(object)string.Join(Environment.NewLine, differences.Select(d => d.ToString()));
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="Diffster{T, TOutput}"/> class with a specified formatter.
+    /// Initializes a new instance of the <see cref="Diffex{T, TOutput}"/> class with a specified formatter.
     /// </summary>
     /// <param name="formatter">The formatter function to format the list of property differences.</param>
     /// <exception cref="ArgumentNullException">Thrown when the formatter is null.</exception>
-    public Diffster(Func<List<PropertyDifference>, TOutput> formatter) => _formatter = formatter ?? throw new ArgumentNullException(nameof(formatter));
+    public Diffex(Func<List<PropertyDifference>, TOutput> formatter) => _formatter = formatter ?? throw new ArgumentNullException(nameof(formatter));
 
     /// <summary>
     /// Compares two objects of type T and returns the differences in the specified format.

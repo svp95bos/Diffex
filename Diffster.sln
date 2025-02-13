@@ -2,11 +2,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.13.35731.43
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diffster", "src\Diffster\Diffster.csproj", "{2B3BB4FF-C244-091A-B64E-DF60666417EE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diffex", "src\Diffster\Diffex.csproj", "{2B3BB4FF-C244-091A-B64E-DF60666417EE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples", "src\Samples\Samples\Samples.csproj", "{A5C2D2AE-885B-4F53-9935-3F5A0377B17B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diffster.Tests", "Diffster.Tests\Diffster.Tests.csproj", "{0E20F209-469B-42C0-B7E4-EC00D6A3445B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diffex.Tests", "Diffster.Tests\Diffex.Tests.csproj", "{0E20F209-469B-42C0-B7E4-EC00D6A3445B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

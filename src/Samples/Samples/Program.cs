@@ -2,7 +2,7 @@
 
 using System.Text.Json;
 
-using Diffster;
+using Diffex;
 
 using Samples;
 

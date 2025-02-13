@@ -4,7 +4,7 @@
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Title>Diffster diff helper</Title>
+    <Title>Diffex diff helper</Title>
     <PackageTags>diff;compare</PackageTags>
   </PropertyGroup>
 

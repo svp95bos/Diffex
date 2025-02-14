@@ -20,6 +20,11 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 9.0.x
+    - name: Set up environment variables
+      run: |
+        echo "DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false" >> $GITHUB_ENV
+        echo "DOTNET_CLI_TELEMETRY_OPTOUT=1" >> $GITHUB_ENV
+        echo "LANG=sv-SE.UTF-8" >> $GITHUB_ENV
     - name: Restore dependencies
       run: dotnet restore
     - name: Build

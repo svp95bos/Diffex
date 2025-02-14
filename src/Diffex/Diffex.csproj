@@ -7,8 +7,8 @@
 		<Title>Diffex diff helper</Title>
 		<PackageTags>diff;compare</PackageTags>
 		<Description>A library for getting the differences between to instances.</Description>
-		<PackageId>$(AssemblyName).beta</PackageId>
-		<Version>0.0.2</Version>
+		<PackageId>Diffex</PackageId>
+		<Version>0.0.1-alpha</Version>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		
 	</PropertyGroup>

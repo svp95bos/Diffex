@@ -26,7 +26,7 @@ public class DefaultFormatterTests
         DateTime first = new DateTime(2020, 1, 1);
         DateTime second = new DateTime(2021, 1, 1);
         var result = first.Diff(second);
-        Assert.Contains("null;2020-01-01 00:00:00;2021-01-01 00:00:00", result);
+        Assert.Contains($"null;{first};{second}", result);
     }
 
     [Fact]

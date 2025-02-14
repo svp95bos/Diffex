@@ -1,4 +1,7 @@
 ﻿# Diffex
+ 
+[![Build Status](https://github.com/svp95bos/Diffex/actions/workflows/dotnet.yml/badge.svg)](https://github.com/svp95bos/Diffex/actions/workflows/dotnet.yml)
+[![Test Status](https://github.com/svp95bos/Diffex/actions/workflows/dotnet.yml/badge.svg)](https://github.com/svp95bos/Diffex/actions/workflows/dotnet.yml)
 
 Diffex is a .NET library designed to compare two objects of the same type and return the differences in a specified format. It is highly customizable and can be integrated into various .NET applications.
 

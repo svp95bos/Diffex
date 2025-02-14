@@ -8,9 +8,10 @@
 		<PackageTags>diff;compare</PackageTags>
 		<Description>A library for getting the differences between to instances.</Description>
 		<PackageId>Diffex</PackageId>
-		<Version>0.0.3-alpha</Version>
+		<Version>0.0.4-alpha</Version>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<RepositoryUrl>https://github.com/svp95bos/Diffex</RepositoryUrl>
 		
 	</PropertyGroup>
 

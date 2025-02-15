@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+
 using Diffex;
 using Diffex.Tests.TestObjects;
+
 using Xunit;
 
 namespace Diffex.Tests
@@ -89,7 +91,7 @@ namespace Diffex.Tests
 
             var result = diffex.Diff(first, second);
 
-            Assert.Contains("Date;2020-01-01 00:00:00;2021-01-01 00:00:00", result);
+            Assert.Contains($"Date;{first.Date};{second.Date}", result);
         }
 
         [Fact]
@@ -133,7 +135,7 @@ namespace Diffex.Tests
             Assert.Contains("DoubleProperty.Value;1.1;2.2", result);
             Assert.Contains("BoolProperty.IsTrue;True;False", result);
             Assert.Contains("StringProperty.Name;First;Second", result);
-            Assert.Contains("DateTimeProperty.Date;2020-01-01 00:00:00;2021-01-01 00:00:00\r\n", result);
+            Assert.Contains($"DateTimeProperty.Date;{first.DateTimeProperty.Date};{second.DateTimeProperty.Date}\r\n", result);
             Assert.Contains("EnumProperty.Day;Monday;Tuesday", result);
         }
 
@@ -160,7 +162,7 @@ namespace Diffex.Tests
 
             Assert.Contains("IntList[0];1;4\r\nIntList[1];2;5\r\nIntList[2];3;6\r\n", result);
             Assert.Contains("StringList[0];First;Third\r\nStringList[1];Second;Fourth\r\n", result);
-            Assert.Contains("DateTimeList[0];2020-01-01 00:00:00;2021-01-01 00:00:00\r\n", result);
+            Assert.Contains($"DateTimeList[0];{first.DateTimeList[0].Date};{second.DateTimeList[0].Date}\r\n", result);
             Assert.Contains("EnumList[0];Monday;Tuesday", result);
         }
 
@@ -184,7 +186,7 @@ namespace Diffex.Tests
             var result = diffex.Diff(first, second);
 
             Assert.Contains("IntStringDictionary[0];[1, First];[2, Second]\r\n", result);
-            Assert.Contains("StringDateTimeDictionary[0];[First, 2020-01-01 00:00:00];[Second, 2021-01-01 00:00:00]\r\n", result);
+            Assert.Contains($"StringDateTimeDictionary[0];[First, {first.StringDateTimeDictionary["First"].Date}];[Second, {second.StringDateTimeDictionary["Second"].Date}]\r\n", result);
             Assert.Contains("EnumIntDictionary[0];[Monday, 1];[Tuesday, 2]", result);
         }
 
@@ -249,14 +251,14 @@ namespace Diffex.Tests
             Assert.Contains("NestedProperty.DoubleProperty.Value;1.1;2.2", result);
             Assert.Contains("NestedProperty.BoolProperty.IsTrue;True;False", result);
             Assert.Contains("NestedProperty.StringProperty.Name;First;Second", result);
-            Assert.Contains("NestedProperty.DateTimeProperty.Date;2020-01-01 00:00:00;2021-01-01 00:00:00", result);
+            Assert.Contains($"NestedProperty.DateTimeProperty.Date;{first.NestedProperty.DateTimeProperty.Date};{second.NestedProperty.DateTimeProperty.Date}", result);
             Assert.Contains("NestedProperty.EnumProperty.Day;Monday;Tuesday", result);
             Assert.Contains("ListProperty.IntList[0];1;4", result);
             Assert.Contains("ListProperty.StringList[0];First;Third", result);
-            Assert.Contains("ListProperty.DateTimeList[0];2020-01-01 00:00:00;2021-01-01 00:00:00", result);
+            Assert.Contains($"ListProperty.DateTimeList[0];{first.ListProperty.DateTimeList[0].Date};{second.ListProperty.DateTimeList[0].Date}", result);
             Assert.Contains("ListProperty.EnumList[0];Monday;Tuesday", result);
             Assert.Contains("DictionaryProperty.IntStringDictionary[0];[1, First];[2, Second]", result);
-            Assert.Contains("DictionaryProperty.StringDateTimeDictionary[0];[First, 2020-01-01 00:00:00];[Second, 2021-01-01 00:00:00]", result);
+            Assert.Contains($"DictionaryProperty.StringDateTimeDictionary[0];[First, {first.DictionaryProperty.StringDateTimeDictionary["First"].Date}];[Second, {second.DictionaryProperty.StringDateTimeDictionary["Second"].Date}]", result);
             Assert.Contains("DictionaryProperty.EnumIntDictionary[0];[Monday, 1];[Tuesday, 2]", result);
         }
 
@@ -283,7 +285,7 @@ namespace Diffex.Tests
 
             Assert.Contains("IntArray[0];1;4", result);
             Assert.Contains("StringArray[0];First;Third", result);
-            Assert.Contains("DateTimeArray[0];2020-01-01 00:00:00;2021-01-01 00:00:00", result);
+            Assert.Contains($"DateTimeArray[0];{first.DateTimeArray[0]};{second.DateTimeArray[0]}", result);
             Assert.Contains("EnumArray[0];Monday;Tuesday", result);
         }
 

@@ -82,7 +82,14 @@ public class Diffex<T, TOutput>
             object secondValue = property.GetValue(second);
             string propertyPath = string.IsNullOrEmpty(parentPath) ? property.Name : $"{parentPath}.{property.Name}";
 
-            if (IsEnum(property.PropertyType))
+            if (property.PropertyType == typeof(DateTime))
+            {
+                if (!Equals(firstValue, secondValue))
+                {
+                    differences.Add(new PropertyDifference { PropertyName = propertyPath, FirstValue = firstValue, SecondValue = secondValue });
+                }
+            }
+            else if (IsEnum(property.PropertyType))
             {
                 if (!Equals(firstValue, secondValue))
                 {

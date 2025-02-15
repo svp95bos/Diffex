@@ -89,7 +89,7 @@ namespace Diffex.Tests
 
             var result = diffex.Diff(first, second);
 
-            Assert.Contains("Date;1/1/2020 12:00:00 AM;1/1/2021 12:00:00 AM", result);
+            Assert.Contains("Date;2020-01-01 00:00:00;2021-01-01 00:00:00", result);
         }
 
         [Fact]

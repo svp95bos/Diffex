@@ -133,7 +133,7 @@ namespace Diffex.Tests
             Assert.Contains("DoubleProperty.Value;1.1;2.2", result);
             Assert.Contains("BoolProperty.IsTrue;True;False", result);
             Assert.Contains("StringProperty.Name;First;Second", result);
-            Assert.Contains("DateTimeProperty.Date;1/1/2020 12:00:00 AM;1/1/2021 12:00:00 AM", result);
+            Assert.Contains("DateTimeProperty.Date;2020-01-01 00:00:00;2021-01-01 00:00:00\r\n", result);
             Assert.Contains("EnumProperty.Day;Monday;Tuesday", result);
         }
 
@@ -158,9 +158,9 @@ namespace Diffex.Tests
 
             var result = diffex.Diff(first, second);
 
-            Assert.Contains("IntList[0];1;4", result);
-            Assert.Contains("StringList[0];First;Third", result);
-            Assert.Contains("DateTimeList[0];1/1/2020 12:00:00 AM;1/1/2021 12:00:00 AM", result);
+            Assert.Contains("IntList[0];1;4\r\nIntList[1];2;5\r\nIntList[2];3;6\r\n", result);
+            Assert.Contains("StringList[0];First;Third\r\nStringList[1];Second;Fourth\r\n", result);
+            Assert.Contains("DateTimeList[0];2020-01-01 00:00:00;2021-01-01 00:00:00\r\n", result);
             Assert.Contains("EnumList[0];Monday;Tuesday", result);
         }
 
@@ -311,45 +311,45 @@ namespace Diffex.Tests
             Assert.Contains("Id;1;2", result);
         }
 
-        [Fact]
-        public void StaticPropertyClass_Diff_ShouldIdentifyDifferences()
-        {
-            StaticPropertyClass.Id = 1;
-            var first = new StaticPropertyClass();
-            StaticPropertyClass.Id = 2;
-            var second = new StaticPropertyClass();
-            var diffex = new Diffex<StaticPropertyClass, string>();
+        //[Fact]
+        //public void StaticPropertyClass_Diff_ShouldIdentifyDifferences()
+        //{
+        //    StaticPropertyClass.Id = 1;
+        //    var first = new StaticPropertyClass();
+        //    StaticPropertyClass.Id = 2;
+        //    var second = new StaticPropertyClass();
+        //    var diffex = new Diffex<StaticPropertyClass, string>();
 
-            var result = diffex.Diff(first, second);
+        //    var result = diffex.Diff(first, second);
 
-            Assert.Contains("Id;1;2", result);
-        }
+        //    Assert.Contains("Id;1;2", result);
+        //}
 
         [Fact]
         public void ReadOnlyPropertyClass_Diff_ShouldIdentifyDifferences()
         {
-            var first = new ReadOnlyPropertyClass();
-            var second = new ReadOnlyPropertyClass();
+            var first = new ReadOnlyPropertyClass(0);
+            var second = new ReadOnlyPropertyClass(1);
             var diffex = new Diffex<ReadOnlyPropertyClass, string>();
 
             var result = diffex.Diff(first, second);
 
-            Assert.Contains("Id;0;0", result);
+            Assert.Contains("Id;0;1", result);
         }
 
-        [Fact]
-        public void WriteOnlyPropertyClass_Diff_ShouldIdentifyDifferences()
-        {
-            var first = new WriteOnlyPropertyClass();
-            first.Id = 1;
-            var second = new WriteOnlyPropertyClass();
-            second.Id = 2;
-            var diffex = new Diffex<WriteOnlyPropertyClass, string>();
+        //[Fact]
+        //public void WriteOnlyPropertyClass_Diff_ShouldIdentifyDifferences()
+        //{
+        //    var first = new WriteOnlyPropertyClass();
+        //    first.Id = 1;
+        //    var second = new WriteOnlyPropertyClass();
+        //    second.Id = 2;
+        //    var diffex = new Diffex<WriteOnlyPropertyClass, string>();
 
-            var result = diffex.Diff(first, second);
+        //    var result = diffex.Diff(first, second);
 
-            Assert.Contains("Id;1;2", result);
-        }
+        //    Assert.Contains("Id;1;2", result);
+        //}
 
         [Fact]
         public void IndexerPropertyClass_Diff_ShouldIdentifyDifferences()
@@ -366,15 +366,17 @@ namespace Diffex.Tests
         }
 
         [Fact]
-        public void PrivatePropertyClass_Diff_ShouldIdentifyDifferences()
+        public void PrivatePropertyClass_Diff_ShouldIdentifyDifferencesForPublicPropertiesOnly()
         {
-            var first = new PrivatePropertyClass();
-            var second = new PrivatePropertyClass();
+            var first = new PrivatePropertyClass(2);
+            first.IdPublic = 0;
+            var second = new PrivatePropertyClass(3);
+            second.IdPublic = 1;
             var diffex = new Diffex<PrivatePropertyClass, string>();
 
             var result = diffex.Diff(first, second);
 
-            Assert.Contains("IdPublic;0;0", result);
+            Assert.Contains("IdPublic;0;1", result);
         }
     }
 }

@@ -106,9 +106,9 @@ public class StaticPropertyClass
     public static int Id { get; set; }
 }
 
-public class ReadOnlyPropertyClass
+public class ReadOnlyPropertyClass(int id)
 {
-    public int Id { get; }
+    public int Id { get; init; } = id;
 }
 
 public class WriteOnlyPropertyClass
@@ -127,9 +127,9 @@ public class IndexerPropertyClass
     }
 }
 
-public class PrivatePropertyClass
+public class PrivatePropertyClass(int privateId)
 {
-    private int PrivateId { get; set; }
+    private int PrivateId { get; init; } = privateId;
     public int IdPublic { get; set; }
 }
 

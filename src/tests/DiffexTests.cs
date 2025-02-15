@@ -183,12 +183,9 @@ namespace Diffex.Tests
 
             var result = diffex.Diff(first, second);
 
-            Assert.Contains("IntStringDictionary[1];First;", result);
-            Assert.Contains("IntStringDictionary[2];;Second", result);
-            Assert.Contains("StringDateTimeDictionary[First];1/1/2020 12:00:00 AM;", result);
-            Assert.Contains("StringDateTimeDictionary[Second];;1/1/2021 12:00:00 AM", result);
-            Assert.Contains("EnumIntDictionary[Monday];1;", result);
-            Assert.Contains("EnumIntDictionary[Tuesday];;2", result);
+            Assert.Contains("IntStringDictionary[0];[1, First];[2, Second]\r\n", result);
+            Assert.Contains("StringDateTimeDictionary[0];[First, 2020-01-01 00:00:00];[Second, 2021-01-01 00:00:00]\r\n", result);
+            Assert.Contains("EnumIntDictionary[0];[Monday, 1];[Tuesday, 2]", result);
         }
 
         [Fact]

@@ -48,9 +48,30 @@ public class Diffex<T, TOutput>
         {
             if (property.GetIndexParameters().Length > 0)
             {
-                if (IsCollection(property.DeclaringType))
+                // Handle indexer properties
+                var firstCollection = first as ICollection;
+                var secondCollection = second as ICollection;
+
+                if (firstCollection != null && secondCollection != null)
                 {
-                    differences.AddRange(CompareCollections(first as IEnumerable, second as IEnumerable, parentPath));
+                    for (int i = 0; i < Math.Min(firstCollection.Count, secondCollection.Count); i++)
+                    {
+                        try
+                        {
+                            object firstIndexedValue = property.GetValue(first, new object[] { i });
+                            object secondIndexedValue = property.GetValue(second, new object[] { i });
+                            string indexedPath = $"{parentPath}[{i}]";
+
+                            if (!Equals(firstIndexedValue, secondIndexedValue))
+                            {
+                                differences.Add(new PropertyDifference { PropertyName = indexedPath, FirstValue = firstIndexedValue, SecondValue = secondIndexedValue });
+                            }
+                        }
+                        catch (ArgumentOutOfRangeException)
+                        {
+                            break;
+                        }
+                    }
                 }
                 continue;
             }

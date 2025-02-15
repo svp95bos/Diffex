@@ -43,7 +43,8 @@ public static class DifferExtensions
     /// <exception cref="ArgumentNullException">Thrown when the formatter is null.</exception>
     public static IServiceCollection AddDiffster<T, TOutput>(this IServiceCollection services, Func<List<PropertyDifference>, TOutput> formatter)
     {
-        ArgumentNullException.ThrowIfNull(formatter);
+        if(formatter is null)
+            throw new ArgumentNullException(nameof(formatter));
 
         services.AddSingleton(provider => new Diffex<T, TOutput>(formatter));
         return services;

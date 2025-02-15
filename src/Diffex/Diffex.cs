@@ -49,28 +49,26 @@ public class Diffex<T, TOutput>
             if (property.GetIndexParameters().Length > 0)
             {
                 // Handle indexer properties
-                var firstCollection = first as ICollection;
-                var secondCollection = second as ICollection;
-
-                if (firstCollection != null && secondCollection != null)
+                for (int i = 0; ; i++)
                 {
-                    for (int i = 0; i < Math.Min(firstCollection.Count, secondCollection.Count); i++)
+                    try
                     {
-                        try
-                        {
-                            object firstIndexedValue = property.GetValue(first, new object[] { i });
-                            object secondIndexedValue = property.GetValue(second, new object[] { i });
-                            string indexedPath = $"{parentPath}[{i}]";
+                        object firstIndexedValue = property.GetValue(first, new object[] { i });
+                        object secondIndexedValue = property.GetValue(second, new object[] { i });
+                        string indexedPath = $"{parentPath}[{i}]";
 
-                            if (!Equals(firstIndexedValue, secondIndexedValue))
-                            {
-                                differences.Add(new PropertyDifference { PropertyName = indexedPath, FirstValue = firstIndexedValue, SecondValue = secondIndexedValue });
-                            }
-                        }
-                        catch (ArgumentOutOfRangeException)
+                        if (!Equals(firstIndexedValue, secondIndexedValue))
                         {
-                            break;
+                            differences.Add(new PropertyDifference { PropertyName = indexedPath, FirstValue = firstIndexedValue, SecondValue = secondIndexedValue });
                         }
+                    }
+                    catch (TargetInvocationException)
+                    {
+                        break;
+                    }
+                    catch (ArgumentOutOfRangeException)
+                    {
+                        break;
                     }
                 }
                 continue;

@@ -364,7 +364,7 @@ namespace Diffex.Tests
 
             var result = diffex.Diff(first, second);
 
-            Assert.Contains("[0];1;2", result);
+            Assert.Contains("[1];2;1", result);
         }
 
         [Fact]

@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diffex", "src\Diffex\Diffex
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diffex.Tests", "src\tests\Diffex.Tests.csproj", "{135B1A1C-68AC-DE68-CDD2-1D081FF79255}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diffex.Analyzers", "src\Diffex.Analyzers\Diffex.Analyzers.csproj", "{81E740B4-B02C-2681-3091-25190FF51A13}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,10 @@ Global
 		{135B1A1C-68AC-DE68-CDD2-1D081FF79255}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{135B1A1C-68AC-DE68-CDD2-1D081FF79255}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{135B1A1C-68AC-DE68-CDD2-1D081FF79255}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81E740B4-B02C-2681-3091-25190FF51A13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81E740B4-B02C-2681-3091-25190FF51A13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81E740B4-B02C-2681-3091-25190FF51A13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81E740B4-B02C-2681-3091-25190FF51A13}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

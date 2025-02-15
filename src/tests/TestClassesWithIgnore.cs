@@ -171,7 +171,8 @@ public class IndexerPropertyClassWithIgnore
 
 public class PrivatePropertyClassWithIgnore(int privateId)
 {
-   
+
+    [DiffexIgnore]
     private int PrivateId { get; init; } = privateId;
 
     [DiffexIgnore]

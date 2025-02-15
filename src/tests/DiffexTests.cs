@@ -252,18 +252,15 @@ namespace Diffex.Tests
             Assert.Contains("NestedProperty.DoubleProperty.Value;1.1;2.2", result);
             Assert.Contains("NestedProperty.BoolProperty.IsTrue;True;False", result);
             Assert.Contains("NestedProperty.StringProperty.Name;First;Second", result);
-            Assert.Contains("NestedProperty.DateTimeProperty.Date;1/1/2020 12:00:00 AM;1/1/2021 12:00:00 AM", result);
+            Assert.Contains("NestedProperty.DateTimeProperty.Date;2020-01-01 00:00:00;2021-01-01 00:00:00", result);
             Assert.Contains("NestedProperty.EnumProperty.Day;Monday;Tuesday", result);
             Assert.Contains("ListProperty.IntList[0];1;4", result);
             Assert.Contains("ListProperty.StringList[0];First;Third", result);
-            Assert.Contains("ListProperty.DateTimeList[0];1/1/2020 12:00:00 AM;1/1/2021 12:00:00 AM", result);
+            Assert.Contains("ListProperty.DateTimeList[0];2020-01-01 00:00:00;2021-01-01 00:00:00", result);
             Assert.Contains("ListProperty.EnumList[0];Monday;Tuesday", result);
-            Assert.Contains("DictionaryProperty.IntStringDictionary[1];First;", result);
-            Assert.Contains("DictionaryProperty.IntStringDictionary[2];;Second", result);
-            Assert.Contains("DictionaryProperty.StringDateTimeDictionary[First];1/1/2020 12:00:00 AM;", result);
-            Assert.Contains("DictionaryProperty.StringDateTimeDictionary[Second];;1/1/2021 12:00:00 AM", result);
-            Assert.Contains("DictionaryProperty.EnumIntDictionary[Monday];1;", result);
-            Assert.Contains("DictionaryProperty.EnumIntDictionary[Tuesday];;2", result);
+            Assert.Contains("DictionaryProperty.IntStringDictionary[0];[1, First];[2, Second]", result);
+            Assert.Contains("DictionaryProperty.StringDateTimeDictionary[0];[First, 2020-01-01 00:00:00];[Second, 2021-01-01 00:00:00]", result);
+            Assert.Contains("DictionaryProperty.EnumIntDictionary[0];[Monday, 1];[Tuesday, 2]", result);
         }
 
         [Fact]

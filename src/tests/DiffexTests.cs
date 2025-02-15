@@ -354,10 +354,12 @@ namespace Diffex.Tests
         [Fact]
         public void IndexerPropertyClass_Diff_ShouldIdentifyDifferences()
         {
-            var first = new IndexerPropertyClass();
+            var first = new IndexerPropertyClass(2);
             first[0] = 1;
-            var second = new IndexerPropertyClass();
-            second[0] = 2;
+            first[1] = 2;
+            var second = new IndexerPropertyClass(2);
+            second[0] = 1;
+            second[1] = 1;
             var diffex = new Diffex<IndexerPropertyClass, string>();
 
             var result = diffex.Diff(first, second);

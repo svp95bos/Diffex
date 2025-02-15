@@ -119,13 +119,24 @@ public class WriteOnlyPropertyClass
 
 public class IndexerPropertyClass
 {
-    private List<int> _list = new List<int>();
+    private List<int> _list;
+
+    public IndexerPropertyClass(int size)
+    {
+        _list = new List<int>(size);
+        for (int i = 0; i < size; i++)
+        {
+            _list.Add(0); // Initialize with default values
+        }
+    }
+
     public int this[int index]
     {
         get { return _list[index]; }
         set { _list[index] = value; }
     }
 }
+
 
 public class PrivatePropertyClass(int privateId)
 {

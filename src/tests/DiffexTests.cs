@@ -289,7 +289,7 @@ namespace Diffex.Tests
 
             Assert.Contains("IntArray[0];1;4", result);
             Assert.Contains("StringArray[0];First;Third", result);
-            Assert.Contains("DateTimeArray[0];1/1/2020 12:00:00 AM;1/1/2021 12:00:00 AM", result);
+            Assert.Contains("DateTimeArray[0];2020-01-01 00:00:00;2021-01-01 00:00:00", result);
             Assert.Contains("EnumArray[0];Monday;Tuesday", result);
         }
 

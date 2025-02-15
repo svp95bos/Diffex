@@ -159,14 +159,17 @@ public class Diffex<T, TOutput>
             {
                 differences.Add(new PropertyDifference { PropertyName = indexedPath, FirstValue = firstList[i], SecondValue = null });
             }
+            else if (firstList[i].GetType().IsPrimitive || firstList[i].GetType().IsValueType || firstList[i].GetType() == typeof(string))
+            {
+                if (!Equals(firstList[i], secondList[i]))
+                {
+                    differences.Add(new PropertyDifference { PropertyName = indexedPath, FirstValue = firstList[i], SecondValue = secondList[i] });
+                }
+            }
             else if (IsComplexType(firstList[i].GetType()) || IsStruct(firstList[i].GetType()))
             {
                 var nestedDifferences = GetDifferences((T)firstList[i], (T)secondList[i], indexedPath);
                 differences.AddRange(nestedDifferences);
-            }
-            else if (!Equals(firstList[i], secondList[i]))
-            {
-                differences.Add(new PropertyDifference { PropertyName = indexedPath, FirstValue = firstList[i], SecondValue = secondList[i] });
             }
         }
 

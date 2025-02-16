@@ -36,7 +36,7 @@
 
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\Diffex.Abstractions\Diffex.Abstractions.csproj" />
+	  <ProjectReference Include="..\Diffex.Abstractions\Diffex.Abstractions.csproj" />
 	</ItemGroup>
 
 

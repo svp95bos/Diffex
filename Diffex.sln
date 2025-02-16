@@ -8,7 +8,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diffex", "src\Diffex\Diffex
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diffex.Tests", "src\tests\Diffex.Tests.csproj", "{135B1A1C-68AC-DE68-CDD2-1D081FF79255}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diffex.Abstractions", "Diffex.Abstractions\Diffex.Abstractions.csproj", "{ACB7E1CF-7989-4FF3-A57E-3D648E1B15C6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diffex.Abstractions", "src\Diffex.Abstractions\Diffex.Abstractions.csproj", "{E42AFB84-6EE5-2C4E-11B6-3B50D144D715}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,10 +28,10 @@ Global
 		{135B1A1C-68AC-DE68-CDD2-1D081FF79255}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{135B1A1C-68AC-DE68-CDD2-1D081FF79255}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{135B1A1C-68AC-DE68-CDD2-1D081FF79255}.Release|Any CPU.Build.0 = Release|Any CPU
-		{ACB7E1CF-7989-4FF3-A57E-3D648E1B15C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ACB7E1CF-7989-4FF3-A57E-3D648E1B15C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ACB7E1CF-7989-4FF3-A57E-3D648E1B15C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ACB7E1CF-7989-4FF3-A57E-3D648E1B15C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E42AFB84-6EE5-2C4E-11B6-3B50D144D715}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E42AFB84-6EE5-2C4E-11B6-3B50D144D715}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E42AFB84-6EE5-2C4E-11B6-3B50D144D715}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E42AFB84-6EE5-2C4E-11B6-3B50D144D715}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

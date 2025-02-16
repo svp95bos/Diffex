@@ -35,6 +35,12 @@
 
 
 
+	<ItemGroup>
+	  <ProjectReference Include="..\..\Diffex.Abstractions\Diffex.Abstractions.csproj" />
+	</ItemGroup>
+
+
+
 		
 
 </Project>

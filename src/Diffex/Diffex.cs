@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Reflection;
 
+using Diffex.Abstractions;
+
 namespace Diffex;
 
 /// <summary>
@@ -46,6 +48,11 @@ public class Diffex<T, TOutput>
 
         foreach (var property in properties)
         {
+            if (property.GetCustomAttribute<DiffexIgnoreAttribute>() != null)
+            {
+                continue;
+            }
+
             if (property.GetIndexParameters().Length > 0)
             {
                 // Handle indexer properties
@@ -73,7 +80,6 @@ public class Diffex<T, TOutput>
                 }
                 continue;
             }
-
 
             object firstValue = property.GetValue(first);
             object secondValue = property.GetValue(second);
@@ -135,6 +141,11 @@ public class Diffex<T, TOutput>
 
         foreach (var property in properties)
         {
+            if (property.GetCustomAttribute<DiffexIgnoreAttribute>() != null)
+            {
+                continue;
+            }
+
             object firstValue = property.GetValue(first);
             object secondValue = property.GetValue(second);
             string propertyPath = string.IsNullOrEmpty(parentPath) ? property.Name : $"{parentPath}.{property.Name}";

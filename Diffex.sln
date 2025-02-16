@@ -20,6 +20,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diffex.Analyzers.Vsix", "sr
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Analyzers", "Analyzers", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diffex.Analyzers.Test", "src\Diffex.Analyzers\Diffex.Analyzers.Test\Diffex.Analyzers.Test.csproj", "{5D2B0724-AFD5-5DFA-C310-10C526198D25}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -58,6 +60,10 @@ Global
 		{7C7C337B-0637-4F28-9922-99DE39E5969D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C7C337B-0637-4F28-9922-99DE39E5969D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C7C337B-0637-4F28-9922-99DE39E5969D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D2B0724-AFD5-5DFA-C310-10C526198D25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D2B0724-AFD5-5DFA-C310-10C526198D25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D2B0724-AFD5-5DFA-C310-10C526198D25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D2B0724-AFD5-5DFA-C310-10C526198D25}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,6 +73,7 @@ Global
 		{E9FA1FD6-5054-4CD4-9200-99BB3C4FD5EB} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{2ACFE2FC-2A1C-4B66-B509-842E56B4017B} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{7C7C337B-0637-4F28-9922-99DE39E5969D} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{5D2B0724-AFD5-5DFA-C310-10C526198D25} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D54B6F98-E92F-474C-B4EB-22211C5848F4}

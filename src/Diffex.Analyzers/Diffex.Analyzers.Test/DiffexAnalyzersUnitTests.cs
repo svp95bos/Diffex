@@ -3,7 +3,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using VerifyCS = Diffex.Analyzers.Test.CSharpCodeFixVerifier<
-    Diffex.Analyzers.DiffexAnalyzersAnalyzer,
+    Diffex.Analyzers.DiffexIgnorePrivateMemberAnalyzer,
     Diffex.Analyzers.DiffexAnalyzersCodeFixProvider>;
 
 namespace Diffex.Analyzers.Test
@@ -26,35 +26,30 @@ namespace Diffex.Analyzers.Test
         {
             var test = @"
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using System.Diagnostics;
 
     namespace ConsoleApplication1
     {
         class {|#0:TypeName|}
         {   
+            [|[DiffexIgnore]|]
+            private int IntProperty { get; set; }
         }
     }";
 
             var fixtest = @"
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using System.Diagnostics;
 
     namespace ConsoleApplication1
     {
         class TYPENAME
         {   
+            private int IntProperty { get; set; }   
         }
     }";
 
-            var expected = VerifyCS.Diagnostic("DiffexAnalyzers").WithLocation(0).WithArguments("TypeName");
+            var expected = VerifyCS.Diagnostic("DIFFEX001").WithLocation(0).WithArguments("TypeName");
             await VerifyCS.VerifyCodeFixAsync(test, expected, fixtest);
         }
     }

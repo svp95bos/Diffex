@@ -20,7 +20,9 @@ namespace Diffex.Analyzers.Test
         private static ImmutableDictionary<string, ReportDiagnostic> GetNullableWarningsFromCompiler()
         {
             string[] args = { "/warnaserror:nullable" };
+#pragma warning disable RS1035 // Do not use APIs banned for analyzers
             var commandLineArguments = CSharpCommandLineParser.Default.Parse(args, baseDirectory: Environment.CurrentDirectory, sdkDirectory: Environment.CurrentDirectory);
+#pragma warning restore RS1035 // Do not use APIs banned for analyzers
             var nullableWarnings = commandLineArguments.CompilationOptions.SpecificDiagnosticOptions;
 
             // Workaround for https://github.com/dotnet/roslyn/issues/41610

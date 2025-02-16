@@ -25,16 +25,15 @@
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
 		</None>
+		<None Include="..\Diffex.Analyzers\Directory.Build.props" Link="Directory.Build.props" />
 	</ItemGroup>
-
-
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.2" />
 	</ItemGroup>
 
-
-
-		
+	<ItemGroup>
+		<ProjectReference Include="..\Diffex.Abstractions\Diffex.Abstractions.csproj" />
+	</ItemGroup>
 
 </Project>

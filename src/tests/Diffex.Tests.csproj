@@ -21,10 +21,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Diffex.Analyzers\Diffex.Analyzers.csproj"
-					  OutputItemType="Analyzer"
-                      ReferenceOutputAssembly="false"/>
-    <ProjectReference Include="..\Diffex\Diffex.csproj" />
+	  <ProjectReference Include="..\Diffex.Abstractions\Diffex.Abstractions.csproj" />
+	  <ProjectReference Include="..\Diffex\Diffex.csproj">
+		  
+	  </ProjectReference>
   </ItemGroup>
 
   <ItemGroup>

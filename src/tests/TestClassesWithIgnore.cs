@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Diffex.Abstractions;
+using Diffex;
 
 namespace Diffex.Tests.TestObjects;
 
@@ -172,7 +172,7 @@ public class IndexerPropertyClassWithIgnore
 public class PrivatePropertyClassWithIgnore(int privateId)
 {
 
-    [DiffexIgnore]
+    [DiffexIgnoreAttribute]
     private int PrivateId { get; init; } = privateId;
 
     [DiffexIgnore]

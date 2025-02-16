@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Reflection;
 
+using Diffex.Abstractions;
+
 namespace Diffex;
 
 /// <summary>

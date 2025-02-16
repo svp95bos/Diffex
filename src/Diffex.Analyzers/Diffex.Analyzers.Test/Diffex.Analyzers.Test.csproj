@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Diffex.Abstractions\Diffex.Abstractions.csproj" />
     <ProjectReference Include="..\Diffex.Analyzers.CodeFixes\Diffex.Analyzers.CodeFixes.csproj" />
     <ProjectReference Include="..\Diffex.Analyzers\Diffex.Analyzers.csproj" />
   </ItemGroup>

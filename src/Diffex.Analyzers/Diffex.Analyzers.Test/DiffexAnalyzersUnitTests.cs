@@ -2,6 +2,8 @@
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+using Diffex.Abstractions;
+
 using VerifyCS = Diffex.Analyzers.Test.CSharpCodeFixVerifier<
     Diffex.Analyzers.DiffexIgnorePrivateMemberAnalyzer,
     Diffex.Analyzers.DiffexAnalyzersCodeFixProvider>;
@@ -27,7 +29,7 @@ namespace Diffex.Analyzers.Test
             var test = @"
     using System;
     using System.Diagnostics;
-
+    using Diffex.Abstractions;
     namespace ConsoleApplication1
     {
         class {|#0:TypeName|}
@@ -40,7 +42,7 @@ namespace Diffex.Analyzers.Test
             var fixtest = @"
     using System;
     using System.Diagnostics;
-
+    using Diffex.Abstractions;
     namespace ConsoleApplication1
     {
         class TYPENAME

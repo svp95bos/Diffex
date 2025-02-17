@@ -12,7 +12,7 @@ public class DiffexIgnoreAnalyzer : DiagnosticAnalyzer
 {
     public const string DiagnosticId = "DIFFEX001";
     private static readonly LocalizableString Title = "DiffexIgnore attribute applied on private member";
-    private static readonly LocalizableString MessageFormat = "Unnecessary use of [DiffexIgnore] attribute. Private members are always ignored";
+    private static readonly LocalizableString MessageFormat = "Unnecessary use of DiffexIgnore attribute. Private members are always ignored.";
     private static readonly LocalizableString Description = "Detects the DiffexIgnore attribute applied to a property or field.";
     private const string Category = "Usage";
 

@@ -33,7 +33,7 @@ jobs:
       run: dotnet restore
 
     - name: Build non-VSIX projects
-      run: dotnet build --no-restore
+      run: dotnet build --no-restore --exclude src/Diffex.Analyzers/Diffex.Analyzers.Vsix/Diffex.Analyzers.Vsix.csproj
 
     - name: Build VSIX project
       run: msbuild src/Diffex.Analyzers/Diffex.Analyzers.Vsix/Diffex.Analyzers.Vsix.csproj /p:Configuration=Release

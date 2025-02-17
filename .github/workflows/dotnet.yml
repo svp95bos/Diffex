@@ -27,8 +27,10 @@ jobs:
         echo "LANG=sv-SE.UTF-8" >> $GITHUB_ENV
     - name: Restore dependencies
       run: dotnet restore
-    - name: Build
+    - name: Build non-VSIX projects
       run: dotnet build --no-restore
+    - name: Build VSIX project
+      run: msbuild src/Diffex.Analyzers/Diffex.Analyzers.Vsix/Diffex.Analyzers.Vsix.csproj /p:Configuration=Release
     - name: Test
       run: dotnet test --no-build --verbosity normal --logger "trx;LogFileName=test_results.trx"
     - name: Publish Test Results
